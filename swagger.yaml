@@ -1,0 +1,259 @@
+swagger: '2.0'
+info:
+  description: This is DataHub API.
+  version: "v1"
+  title: Datahub API
+
+  contact:
+    email: dataportal-edirex@ics.muni.cz
+
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+
+paths:
+  /patient:
+    get:
+      summary: searches patients
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Patient'
+        400:
+          description: service out
+  /sample:
+    get:
+      summary: searches samples
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sample'
+        400:
+          description: service out
+  /cna:
+    get:
+      summary: searches cnas
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cna'
+        400:
+          description: service out
+
+
+  /sample/{sampleId}:
+    get:
+      summary: returns specific sample
+      parameters:
+      - name: "sampleId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sample'
+        400:
+          description: bad input parameter
+
+  /sample/{sampleId}/cna:
+    get:
+      summary: searches cna records for specific sample
+      parameters:
+      - name: "sampleId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cna'
+        400:
+          description: bad input parameter
+
+  /sample/{sampleId}/expression:
+    get:
+      summary: searches expression records for specific sample
+      parameters:
+      - name: "sampleId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Expression'
+        400:
+          description: bad input parameter
+  /sample/{sampleId}/mutation:
+    get:
+      summary: searches mutation records for specific sample
+      parameters:
+      - name: "sampleId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mutation'
+
+definitions:
+  Patient:
+    type: object
+    required:
+    - id
+    - name
+    properties:
+      id:
+        type: string
+        example: 11111000206
+      name:
+        type: string
+        example: 'Zrovna jmeno tady asi nebude.'
+  Sample:
+    type: object
+    required:
+    - sample_id
+    - patient_id
+    - institution
+    properties:
+      sample_id:
+        type: string
+        example: CRC0691LM
+      patient_id:
+        type: integer
+        example: 11000206
+      institution:
+        type: string
+        example: 'UNITO'
+  Cna:
+    type: object
+    required:
+    - sample_id
+    - entrez_gene_id
+    - value
+    properties:
+      sample_id:
+        type: string
+        example: CRC0691LM
+      entrez_gene_id:
+        type: integer
+        example: 1
+      value:
+        type: integer
+        example: 2
+  Expression:
+    type: object
+    required:
+    - sampleId
+    - hugoSymbol
+    - entrezGeneId
+    properties:
+      sampleId:
+        type: string
+        example: CRC0691LM
+      entrezGeneId:
+        type: integer
+        example: 100132074
+      hugoSymbol:
+        type: string
+        example: A2M
+  Mutation:
+    type: object
+    required:
+    - sampleId
+    - hugoSymbol
+    - entrezGeneId
+    - ncbiBuild
+    - chromosome
+    - startPosition
+    - endPosition
+    - strand
+    - tumorSampleBarcode
+    - variantClassification
+    - hgvsShort
+    - proteinPosition
+    - swissprot
+    properties:
+      sampleId:
+        type: string
+        example: CRC0691LM
+      entrezGeneId:
+        type: integer
+        example: 100132074
+      hugoSymbol:
+        type: string
+        example: A2M
+      ncbiBuild:
+        type: number
+        example: 37.1
+      chromosome:
+        type: integer
+        example: 12
+      startPosition:
+        type: integer
+        example: 9243799
+      endPosition:
+        type: integer
+        example: 9243799
+      strand:
+        type: integer
+        example: -1
+      tumorSampleBarcode:
+        type: string
+        example: CRC0112LM
+      variantClassification:
+        type: string
+        example: Missense_Mutation
+      hgvsShort:
+        type: string
+        example: p.R823W
+      proteinPosition:
+        type: integer
+        example: 823
+      swissprot:
+        type: string
+        example: A0A0A0MT16
+
+# Added by API Auto Mocking Plugin
+host: virtserver.swaggerhub.com
+basePath: /RadimPesa/datahub/v1
+schemes:
+ - https
