@@ -153,6 +153,21 @@ definitions:
     - sample_id
     - patient_id
     - institution
+    - date_of_collection
+    - age_at_collection
+    - sample_origin
+    - site_of_sampled_metastasis
+    - implant_site
+    - implant_type
+    - strain
+    - drug_data_available
+    - fingerprint_available
+    - gep_ilmn_rnaseq_available
+    - genetics_available
+    - sanger_seq_available
+    - illumina_wes_available
+    - gene_panel
+    - oncotree_code
     properties:
       sample_id:
         type: string
@@ -163,6 +178,52 @@ definitions:
       institution:
         type: string
         example: 'UNITO'
+      date_of_collection:
+        type: string
+        example: 'something here'
+      age_at_collection:
+        type: string
+        example: 'something here'
+      sample_origin:
+        type: string
+        example: 'something here'
+      site_of_sampled_metastasis:
+        type: string
+        example: 'something here'
+      implant_site:
+        type: string
+        example: 'something here'
+      implant_type:
+        type: string
+        example: 'something here'
+      strain:
+        type: string
+        example: 'something here'
+      drug_data_available:
+        type: string
+        example: 'something here'
+      fingerprint_available:
+        type: string
+        example: 'something here'
+      gep_ilmn_rnaseq_available:
+        type: string
+        example: 'something here'
+      genetics_available:
+        type: string
+        example: 'something here'
+      sanger_seq_available:
+        type: string
+        example: 'something here'
+      illumina_wes_available:
+        type: string
+        example: 'something here'
+      gene_panel:
+        type: string
+        example: 'something here'
+      oncotree_code:
+        type: string
+        example: 'something here'
+
   Cna:
     type: object
     required:
