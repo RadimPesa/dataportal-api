@@ -133,7 +133,79 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Mutation'
+  /sample/{sampleId}/cna/{stable_id}:
+    get:
+      summary: searchers cna for specific sample with specific stable_id
+      parameters:
+      - name: "sampleId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stable_id"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results mathing criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cna'
 
+  /sample/{sampleId}/expression/{stable_id}:
+    get:
+      summary: searchers expression for specific sample with specific stable_id
+      parameters:
+      - name: "sampleId"
+        in: "path"
+        required: true
+        type: "string"
+      - name: "stable_id"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results mathing criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Expression'  
+  /studies:
+    get:
+      summary: list all avaible studies
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Studies'
+  /studies/{name}/samples:
+    get:
+      summary: list samples for specific studies
+      parameters:
+      - name: "name"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results mathing criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Studies1'
+          
 definitions:
   Patient:
     type: object
@@ -230,6 +302,7 @@ definitions:
     - sample_id
     - entrez_gene_id
     - value
+    - stable_id
     properties:
       sample_id:
         type: string
@@ -240,12 +313,16 @@ definitions:
       value:
         type: integer
         example: 2
+      stable_id:
+        type: string
+        example: gistic
   Expression:
     type: object
     required:
     - sampleId
     - hugoSymbol
     - entrezGeneId
+    - stable_id
     properties:
       sampleId:
         type: string
@@ -256,6 +333,30 @@ definitions:
       hugoSymbol:
         type: string
         example: A2M
+      stable_id:
+        type: string
+        example: rna_seq_mrna
+  Studies:
+    type: object
+    required:
+    - name
+    properties:
+      name:
+        type: string
+        example: UNITO
+  Studies1:
+    type: object
+    required:
+    - name
+    properties:
+      name:
+        type: string
+        example: UNITO
+      samples:
+        type: array
+        items:
+          $ref: '#/definitions/Sample'
+  
   Mutation:
     type: object
     required:
