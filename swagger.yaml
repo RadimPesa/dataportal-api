@@ -336,22 +336,90 @@ definitions:
       stable_id:
         type: string
         example: rna_seq_mrna
+  MetaFile:
+    type: object
+    required:
+    - genetic_alteration_type
+    - datatype
+    - stable_id
+    - show_profile_in_analysis_tab
+    - profile_description
+    - profile_name
+    - swissprot_identifier
+    - data_filename
+    properties:
+      genetic_alteration_type:
+        type: string
+        example: MUTATION_EXTENDED
+      datatype:
+        type: string
+        example: MAF
+      stable_id:
+        type: string
+        example: mutations
+      show_profile_in_analysis_tab:
+        type: string
+        example: true
+      profile_description:
+        type: string 
+        example: Mutation data
+      profile_name:
+        type: string 
+        example: Mutations
+      swissprot_identifier:
+        type: string 
+        example: accession
+      data_filename:
+        type: string
+        example: mutations_extended.maf
   Studies:
     type: object
     required:
     - name
+    - identifier
+    - cancer_type
+    - description
+    - short_name
     properties:
       name:
         type: string
-        example: UNITO
+        example: 500 colorectal cancer models (ircc)
+      identifier:
+        type: string
+        example: ircc_crc_feb2018
+      cancer_type:
+        type: string
+        example: crc  Colorectal cancer colorectal,colon  tomato  tissue
+      description:
+        type: string
+        example: 500 colorectal cancer models (ircc)
+      short_name:
+        type: string
+        example: IRCC CRC
   Studies1:
     type: object
     required:
     - name
+    - identifier
+    - cancer_type
+    - description
+    - short_name
     properties:
       name:
         type: string
         example: UNITO
+      identifier:
+        type: string
+        example: ircc_crc_feb2018
+      cancer_type:
+        type: string
+        example: crc  Colorectal cancer colorectal,colon  tomato  tissue
+      description:
+        type: string
+        example: 500 colorectal cancer models (ircc)
+      short_name:
+        type: string
+        example: IRCC CRC
       samples:
         type: array
         items:
