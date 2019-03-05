@@ -204,7 +204,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Studies1'
+              $ref: '#/definitions/StudiesWithSamples'
           
 definitions:
   Patient:
@@ -396,7 +396,7 @@ definitions:
       short_name:
         type: string
         example: IRCC CRC
-  Studies1:
+  StudiesWithSamples:
     type: object
     required:
     - name
