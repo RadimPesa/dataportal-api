@@ -257,7 +257,40 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Cna'
-
+  /tmplist/{listId}expression:
+    get:
+      summary: Return cna records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Expression'
+  /tmplist/{listId}mutation:
+    get:
+      summary: Return cna records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mutation'
   /tmplist:
     get:
       summary: Get all of the temporary stored lists of samples
