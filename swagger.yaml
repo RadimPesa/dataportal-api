@@ -225,7 +225,7 @@ paths:
             items:
               type: string
               example: CRC0691LM
-  /tmplist/{listId}sample:
+  /tmplist/{listId}/sample:
     get:
       summary: Return sample records 
       parameters:
@@ -243,7 +243,7 @@ paths:
             items:
               $ref: '#/definitions/Sample'
 
-  /tmplist/{listId}cna:
+  /tmplist/{listId}/cna:
     get:
       summary: Return cna records 
       parameters:
@@ -260,7 +260,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Cna'
-  /tmplist/{listId}expression:
+  /tmplist/{listId}/expression:
     get:
       summary: Return cna records 
       parameters:
@@ -277,7 +277,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Expression'
-  /tmplist/{listId}mutation:
+  /tmplist/{listId}/mutation:
     get:
       summary: Return cna records 
       parameters:
