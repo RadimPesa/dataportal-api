@@ -55,6 +55,21 @@ paths:
               $ref: '#/definitions/Cna'
         400:
           description: service out
+  /mutation:
+    get:
+      summary: searches muttation records
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mutation'
+        400:
+          description: service out
+
 
 
   /sample/{sampleId}:
@@ -200,12 +215,83 @@ paths:
         - application/json
       responses:
         200:
-          description: search results mathing criteria
+          description: search results mathing criteria, returns studies with samples
           schema:
             type: array
             items:
               $ref: '#/definitions/StudiesWithSamples'
-          
+  
+  /tmplist/{listId}:
+    get:
+      summary: Store and access temporary created lists of samples
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Return list of samples ids.
+          schema:
+            type: array
+            items:
+              type: string
+              example: CRC0691LM
+
+  /tmplist/{listId}cna:
+    get:
+      summary: Return cna records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cna'
+
+  /tmplist:
+    get:
+      summary: Get all of the temporary stored lists of samples
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Return list of lists ids.
+          schema:
+            type: array
+            items:
+              type: string
+              example: 1234
+    post:
+      summary: Upload list of sample ids
+      produces:
+        - application/json
+
+      parameters:
+      - name: samples
+        in: body
+        required: true
+        description: List of sample ids to store.
+        schema:
+          type: array
+          items:
+            type: string
+            example: CRC0691LM
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/TmpListId'
+
 definitions:
   Patient:
     type: object
@@ -232,14 +318,9 @@ definitions:
     - implant_site
     - implant_type
     - strain
-    - drug_data_available
-    - fingerprint_available
-    - gep_ilmn_rnaseq_available
-    - genetics_available
-    - sanger_seq_available
-    - illumina_wes_available
     - gene_panel
     - oncotree_code
+    - MsStatus
     properties:
       sample_id:
         type: string
@@ -271,30 +352,17 @@ definitions:
       strain:
         type: string
         example: 'something here'
-      drug_data_available:
-        type: string
-        example: 'something here'
-      fingerprint_available:
-        type: string
-        example: 'something here'
-      gep_ilmn_rnaseq_available:
-        type: string
-        example: 'something here'
-      genetics_available:
-        type: string
-        example: 'something here'
-      sanger_seq_available:
-        type: string
-        example: 'something here'
-      illumina_wes_available:
-        type: string
-        example: 'something here'
       gene_panel:
         type: string
         example: 'something here'
       oncotree_code:
         type: string
         example: 'something here'
+      MsStatus:
+        type: string
+        example: 'stable'
+        enum: ['stable','instable']
+
 
   Cna:
     type: object
@@ -481,6 +549,14 @@ definitions:
       swissprot:
         type: string
         example: A0A0A0MT16
+  TmpListId:
+    type: object
+    required:
+    - tmplistid
+    properties:
+      tmplistid:
+        type: string
+        example: "1234"
 
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
