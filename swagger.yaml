@@ -25,8 +25,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Patient'
-        400:
-          description: service out
   /sample:
     get:
       summary: searches samples
@@ -39,8 +37,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Sample'
-        400:
-          description: service out
   /cna:
     get:
       summary: searches cnas
@@ -53,8 +49,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Cna'
-        400:
-          description: service out
   /mutation:
     get:
       summary: searches muttation records
@@ -67,11 +61,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Mutation'
-        400:
-          description: service out
-
-
-
   /sample/{sampleId}:
     get:
       summary: returns specific sample
@@ -89,9 +78,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Sample'
-        400:
-          description: bad input parameter
-
   /sample/{sampleId}/cna:
     get:
       summary: searches cna records for specific sample
@@ -239,6 +225,23 @@ paths:
             items:
               type: string
               example: CRC0691LM
+  /tmplist/{listId}sample:
+    get:
+      summary: Return sample records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sample'
 
   /tmplist/{listId}cna:
     get:
