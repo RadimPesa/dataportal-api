@@ -355,7 +355,7 @@ definitions:
     - implant_type
     - strain
     - gene_panel
-    - oncotree_code
+    - cancer_study_identifier
     - MsStatus
     properties:
       sample_id:
@@ -391,7 +391,7 @@ definitions:
       gene_panel:
         type: string
         example: 'something here'
-      oncotree_code:
+      cancer_study_identifier:
         type: string
         example: 'something here'
       MsStatus:
@@ -480,7 +480,7 @@ definitions:
     type: object
     required:
     - name
-    - identifier
+    - cancer_study_identifier
     - cancer_type
     - description
     - short_name
@@ -488,7 +488,7 @@ definitions:
       name:
         type: string
         example: 500 colorectal cancer models (ircc)
-      identifier:
+      cancer_study_identifier:
         type: string
         example: ircc_crc_feb2018
       cancer_type:
