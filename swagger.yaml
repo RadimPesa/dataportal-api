@@ -356,7 +356,7 @@ definitions:
     - strain
     - gene_panel
     - cancer_study_identifier
-    - MsStatus
+    - MS_status
     properties:
       sample_id:
         type: string
@@ -394,7 +394,7 @@ definitions:
       cancer_study_identifier:
         type: string
         example: 'something here'
-      MsStatus:
+      MS_status:
         type: string
         example: 'stable'
         enum: ['stable','instable']
