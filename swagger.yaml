@@ -473,7 +473,7 @@ definitions:
       data_filename:
         type: string
         example: mutations_extended.maf
-  Studies:
+  Study:
     type: object
     required:
     - name
@@ -504,7 +504,7 @@ definitions:
     - samples
     properties:
       studies:
-          $ref:  '#/definitions/Studies'
+          $ref:  '#/definitions/Study'
       samples:
         type: array
         items:
