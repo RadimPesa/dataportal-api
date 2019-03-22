@@ -13,7 +13,7 @@ info:
 
 
 paths:
-  /patient:
+  /patients:
     get:
       summary: searches patients
       produces:
@@ -25,7 +25,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Patient'
-  /sample:
+  /samples:
     get:
       summary: searches samples
       produces:
@@ -37,7 +37,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Sample'
-  /cna:
+  /cnas:
     get:
       summary: searches cnas
       produces:
@@ -49,7 +49,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Cna'
-  /mutation:
+  /mutations:
     get:
       summary: searches muttation records
       produces:
@@ -61,7 +61,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Mutation'
-  /sample/{sampleId}:
+  /samples/{sampleId}:
     get:
       summary: returns specific sample
       parameters:
@@ -78,7 +78,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Sample'
-  /sample/{sampleId}/cna:
+  /samples/{sampleId}/cnas:
     get:
       summary: searches cna records for specific sample
       parameters:
@@ -98,7 +98,7 @@ paths:
         400:
           description: bad input parameter
 
-  /sample/{sampleId}/expression:
+  /samples/{sampleId}/expressions:
     get:
       summary: searches expression records for specific sample
       parameters:
@@ -117,7 +117,7 @@ paths:
               $ref: '#/definitions/Expression'
         400:
           description: bad input parameter
-  /sample/{sampleId}/mutation:
+  /samples/{sampleId}/mutations:
     get:
       summary: searches mutation records for specific sample
       parameters:
@@ -134,7 +134,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Mutation'
-  /sample/{sampleId}/cna/{stable_id}:
+  /samples/{sampleId}/cnas/{stable_id}:
     get:
       summary: searchers cna for specific sample with specific stable_id
       parameters:
@@ -156,7 +156,7 @@ paths:
             items:
               $ref: '#/definitions/Cna'
 
-  /sample/{sampleId}/expression/{stable_id}:
+  /samples/{sampleId}/expressions/{stable_id}:
     get:
       summary: searchers expression for specific sample with specific stable_id
       parameters:
@@ -188,7 +188,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Studies'
+              $ref: '#/definitions/Study'
   /studies/{name}/samples:
     get:
       summary: list samples for specific studies
@@ -204,94 +204,7 @@ paths:
           description: search results mathing criteria, returns studies with samples
           schema:
               $ref: '#/definitions/StudyWithSamples'
-  /tmplist/{listId}:
-    get:
-      summary: Store and access temporary created lists of samples
-      parameters:
-      - name: "listId"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: Return list of samples ids.
-          schema:
-            type: array
-            items:
-              type: string
-              example: CRC0691LM
-  /tmplist/{listId}/sample:
-    get:
-      summary: Return sample records 
-      parameters:
-      - name: "listId"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results matching criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Sample'
-
-  /tmplist/{listId}/cna:
-    get:
-      summary: Return cna records 
-      parameters:
-      - name: "listId"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results matching criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Cna'
-  /tmplist/{listId}/expression:
-    get:
-      summary: Return cna records 
-      parameters:
-      - name: "listId"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results matching criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Expression'
-  /tmplist/{listId}/mutation:
-    get:
-      summary: Return cna records 
-      parameters:
-      - name: "listId"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results matching criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Mutation'
-  /tmplist:
+  /tmplists:
     get:
       summary: Get all of the temporary stored lists of samples
       produces:
@@ -324,6 +237,94 @@ paths:
           description: OK
           schema:
             $ref: '#/definitions/TmpListId'
+
+  /tmplists/{listId}:
+    get:
+      summary: Store and access temporary created lists of samples
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Return list of samples ids.
+          schema:
+            type: array
+            items:
+              type: string
+              example: CRC0691LM
+  /tmplists/{listId}/samples:
+    get:
+      summary: Return sample records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Sample'
+
+  /tmplists/{listId}/cnas:
+    get:
+      summary: Return cna records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cna'
+  /tmplists/{listId}/expressions:
+    get:
+      summary: Return cna records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Expression'
+  /tmplists/{listId}/mutations:
+    get:
+      summary: Return cna records 
+      parameters:
+      - name: "listId"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mutation'
 
 definitions:
   Patient:
