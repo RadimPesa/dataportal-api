@@ -203,8 +203,7 @@ paths:
         200:
           description: search results mathing criteria, returns studies with samples
           schema:
-              $ref: '#/definitions/StudiesWithSamples'
-  
+              $ref: '#/definitions/StudyWithSamples'
   /tmplist/{listId}:
     get:
       summary: Store and access temporary created lists of samples
@@ -498,7 +497,7 @@ definitions:
       short_name:
         type: string
         example: IRCC CRC
-  StudiesWithSamples:
+  StudyWithSamples:
     type: object
     required:
     - studies
