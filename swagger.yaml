@@ -355,6 +355,7 @@ definitions:
     - gene_panel
     - cancer_study_identifier
     - MS_status
+    - sample_class
     properties:
       sample_id:
         type: string
@@ -396,6 +397,8 @@ definitions:
         type: string
         example: 'stable'
         enum: ['stable','instable']
+      sample_class:
+        type: string
 
 
   Cna:
