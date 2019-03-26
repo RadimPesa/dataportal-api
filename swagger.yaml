@@ -352,7 +352,7 @@ definitions:
     - implant_site
     - implant_type
     - strain
-    - gene_panel
+    - site_of_primary
     - cancer_study_identifier
     - MS_status
     - sample_class
@@ -387,7 +387,7 @@ definitions:
       strain:
         type: string
         example: 'something here'
-      gene_panel:
+      site_of_primary:
         type: string
         example: 'something here'
       cancer_study_identifier:
