@@ -215,13 +215,11 @@ paths:
           schema:
             type: array
             items:
-              type: string
-              example: 1234
+              $ref: '#/definitions/Tmplist'
     post:
       summary: Upload list of sample ids
       produces:
         - application/json
-
       parameters:
       - name: samples
         in: body
@@ -583,8 +581,17 @@ definitions:
         items: 
           type: string
           example: CRC0691LM
-  
-
+  Tmplist:
+    type: object
+    properties:
+      tmp_list_id:
+        type: integer
+        example: 3
+      sample_ids:
+        type: array
+        items:
+          type: string
+          example: CRC0691LM
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
 basePath: /RadimPesa/datahub/v1
