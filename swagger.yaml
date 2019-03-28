@@ -578,6 +578,14 @@ definitions:
       tmplistid:
         type: string
         example: "1234"
+  PostTmpList:
+  type: object
+  properties:
+    sample_list:
+      type: array
+      items: 
+        $ref: '#/definitions/Sample'
+  
 
 # Added by API Auto Mocking Plugin
 host: virtserver.swaggerhub.com
