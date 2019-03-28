@@ -584,7 +584,8 @@ definitions:
       sample_list:
         type: array
         items: 
-          $ref: '#/definitions/Sample'
+          type: string
+          example: CRC0691LM
   
 
 # Added by API Auto Mocking Plugin
