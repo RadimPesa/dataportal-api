@@ -228,10 +228,7 @@ paths:
         required: true
         description: List of sample ids to store.
         schema:
-          type: array
-          items:
-            type: string
-            example: CRC0691LM
+          $ref: '#/definitions/PostTmpList'
       responses:
         201:
           description: OK
