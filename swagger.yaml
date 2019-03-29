@@ -520,7 +520,6 @@ definitions:
     - startPosition
     - endPosition
     - strand
-    - tumorSampleBarcode
     - variantClassification
     - hgvsShort
     - proteinPosition
@@ -550,9 +549,6 @@ definitions:
       strand:
         type: integer
         example: -1
-      tumorSampleBarcode:
-        type: string
-        example: CRC0112LM
       variantClassification:
         type: string
         example: Missense_Mutation
