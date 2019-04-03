@@ -561,6 +561,19 @@ definitions:
       swissprot:
         type: string
         example: A0A0A0MT16
+  CancerType:
+    type: object
+    properties:
+      oncotree_code:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      dedicated_color:
+        type: string
+      parent_type_of_cancer:
+        type: string
   TmpListId:
     type: object
     required:
