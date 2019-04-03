@@ -204,6 +204,18 @@ paths:
           description: search results mathing criteria, returns studies with samples
           schema:
               $ref: '#/definitions/StudyWithSamples'
+  /cancertypes:
+    get:
+      summary: List available cancer types
+      produces:
+        - application/json
+      responses:
+        200:
+          description: List of available cancer types
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CancerType'
   /tmplists:
     get:
       summary: Get all of the temporary stored lists of samples
