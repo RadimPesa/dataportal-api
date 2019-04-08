@@ -49,9 +49,21 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Cna'
+  /cancertype:
+    get:
+      summary: searches cnas
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CancerType'
   /mutations:
     get:
-      summary: searches muttation records
+      summary: searches mutation records
       produces:
         - application/json
       responses:
@@ -61,6 +73,18 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Mutation'
+  /metafiles:
+    get:
+      summary: searches metafiles records
+      produces:
+        - applicaiton/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MetaFile'
   /samples/{sampleId}:
     get:
       summary: returns specific sample
