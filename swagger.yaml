@@ -218,7 +218,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Expression'  
-  /study:
+  /studies:
     get:
       summary: list all avaible studies
       produces:
@@ -230,7 +230,7 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Study'
-  /study/{name}/samples:
+  /studies/{name}/samples:
     get:
       summary: list samples for specific studies
       parameters:
