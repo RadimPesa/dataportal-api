@@ -85,6 +85,23 @@ paths:
             type: array
             items:
               $ref: '#/definitions/MetaFile'
+  /metafiles/{study.name}:
+    get:
+      summary: returns metafiles for concrete study
+      parameters:
+      - name: "study.name"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - applicaiton/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/MetaFile'
   /samples/{sampleId}:
     get:
       summary: returns specific sample
