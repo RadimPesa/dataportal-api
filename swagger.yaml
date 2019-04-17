@@ -49,18 +49,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Cna'
-  /cancertype:
-    get:
-      summary: searches cnas
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results matching criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/CancerType'
   /mutations:
     get:
       summary: searches mutation records
