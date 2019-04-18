@@ -414,7 +414,7 @@ definitions:
         type: string
         example: CRC0691LM
       patient_id:
-        type: integer
+        type: string
         example: 11000206
       institution:
         type: string
