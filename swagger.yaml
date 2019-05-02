@@ -383,15 +383,11 @@ definitions:
   Patient:
     type: object
     required:
-    - id
-    - name
+    - patient_id
     properties:
-      id:
+      patient_id:
         type: string
         example: 11111000206
-      name:
-        type: string
-        example: 'Zrovna jmeno tady asi nebude.'
   Sample:
     type: object
     required:
