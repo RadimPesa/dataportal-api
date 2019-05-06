@@ -417,19 +417,19 @@ definitions:
         example: 'UNITO'
       date_of_collection:
         type: string
-        example: 'something here'
+        example: '1.1.2000'
       age_at_collection:
         type: string
-        example: 'something here'
+        example: '123'
       sample_origin:
         type: string
         example: 'primary/metastatic'
       site_of_sampled_metastasis:
         type: string
-        example: 'something here'
+        example: ''
       implant_site:
         type: string
-        example: 'something here'
+        example: 'interscapular fat pad'
       implant_type:
         type: string
         example: 'something here'
@@ -439,6 +439,9 @@ definitions:
       site_of_primary:
         type: string
         example: 'breast/colorectum/....'
+      site_of_sample:
+        type: string
+        example: 'axillary lymph node'
       cancer_study_identifier:
         type: string
         example: 'something here'
