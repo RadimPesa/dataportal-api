@@ -388,6 +388,60 @@ definitions:
       patient_id:
         type: string
         example: 11111000206
+      first_diagnoses:
+        type: string
+        example: "colorectal carcinom"
+      sex:
+        type: string
+        # male,female, not specified
+        example: "female"
+  PDXmodel:
+    type: object
+    properties:
+      sample_id:
+        type: string
+        example: CRC0691LM
+      patient_id:
+        type: string
+        example: 11000206
+      institution:
+        type: string
+        example: 'UNITO'
+      date_of_collection:
+        type: string
+        example: 'something here'
+      age_at_collection:
+        type: string
+        example: 'something here'
+      sample_origin:
+        type: string
+        example: 'something here'
+      site_of_sampled_metastasis:
+        type: string
+        example: 'something here'
+      implant_site:
+        type: string
+        example: 'something here'
+      implant_type:
+        type: string
+        example: 'something here'
+      strain:
+        type: string
+        example: 'something here'
+      site_of_primary:
+        type: string
+        example: 'something here'
+      cancer_study_identifier:
+        type: string
+        example: 'something here'
+      MS_status:
+        type: string
+        example: 'stable'
+        enum: ['stable','instable']
+      sample_class:
+        type: string
+        
+        
   Sample:
     type: object
     required:
@@ -417,31 +471,28 @@ definitions:
         example: 'UNITO'
       date_of_collection:
         type: string
-        example: '1.1.2000'
+        example: 'something here'
       age_at_collection:
         type: string
-        example: '123'
+        example: 'something here'
       sample_origin:
         type: string
-        example: 'primary/metastatic'
+        example: 'something here'
       site_of_sampled_metastasis:
         type: string
-        example: ''
+        example: 'something here'
       implant_site:
         type: string
-        example: 'interscapular fat pad'
+        example: 'something here'
       implant_type:
         type: string
         example: 'something here'
       strain:
         type: string
-        example: 'NODSCID / NMRI nude'
+        example: 'something here'
       site_of_primary:
         type: string
-        example: 'breast/colorectum/....'
-      site_of_sample:
-        type: string
-        example: 'axillary lymph node'
+        example: 'something here'
       cancer_study_identifier:
         type: string
         example: 'something here'
