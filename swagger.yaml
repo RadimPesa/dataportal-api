@@ -25,6 +25,19 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Patient'
+  /pdxmodels:
+    get:
+      summary: searches pdxmodels
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PDXmodel'
+
   /samples:
     get:
       summary: searches samples
@@ -398,12 +411,10 @@ definitions:
   PDXmodel:
     type: object
     properties:
-      sample_id:
+      model_id:
         type: string
         example: CRC0691LM
-      patient_id:
-        type: string
-        example: 11000206
+
       institution:
         type: string
         example: 'UNITO'
