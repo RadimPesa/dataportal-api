@@ -38,18 +38,19 @@ paths:
             items:
               $ref: '#/definitions/PDXmodel'
 
-  /samples:
-    get:
-      summary: searches samples
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results matching criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Sample'
+#  /samples:
+#    get:
+#      summary: searches samples
+#      produces:
+#        - application/json
+#      responses:
+#        200:
+#          description: search results matching criteria
+#          schema:
+#            type: array
+#            items:
+#              $ref: '#/definitions/PDXmodel'
+
   /cnas:
     get:
       summary: searches cnas
@@ -61,7 +62,19 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Cna'
+              $ref: '#/definitions/Cnas'
+  /expressions:
+    get:
+      summary: searches expressions
+      produces:
+        - application/json
+      responses:
+        200:
+          description: search results matching criteria
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Expressions'
   /mutations:
     get:
       summary: searches mutation records
@@ -86,11 +99,11 @@ paths:
             type: array
             items:
               $ref: '#/definitions/MetaFile'
-  /metafiles/{study.name}:
+  /metafiles/{study_name}:
     get:
       summary: returns metafiles for concrete study
       parameters:
-      - name: "study.name"
+      - name: "study_name"
         in: "path"
         required: true
         type: "string"
@@ -103,11 +116,11 @@ paths:
             type: array
             items:
               $ref: '#/definitions/MetaFile'
-  /samples/{sampleId}:
+  /pdxmodels/{model_id}:
     get:
-      summary: returns specific sample
+      summary: returns specific pdxmodel
       parameters:
-      - name: "sampleId"
+      - name: "model_id"
         in: "path"
         required: true
         type: "string"
@@ -119,12 +132,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Sample'
-  /samples/{sampleId}/cnas:
+              $ref: '#/definitions/PDXmodel'
+  /pdxmodels/{model_id}/cnas:
     get:
-      summary: searches cna records for specific sample
+      summary: searches cna records for specific PDXmodel
       parameters:
-      - name: "sampleId"
+      - name: "model_id"
         in: "path"
         required: true
         type: "string"
@@ -136,15 +149,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Cna'
-        400:
-          description: bad input parameter
-
-  /samples/{sampleId}/expressions:
+              $ref: '#/definitions/Cnas'
+  /pdxmodels/{model_id}/expressions:
     get:
-      summary: searches expression records for specific sample
+      summary: searches expression records for specific pdxmodel
       parameters:
-      - name: "sampleId"
+      - name: "model_id"
         in: "path"
         required: true
         type: "string"
@@ -156,14 +166,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Expression'
-        400:
-          description: bad input parameter
-  /samples/{sampleId}/mutations:
+              $ref: '#/definitions/Expressions'
+  /pdxmodels/{model_id}/mutations:
     get:
-      summary: searches mutation records for specific sample
+      summary: searches mutation records for specific PDXmodel
       parameters:
-      - name: "sampleId"
+      - name: "model_id"
         in: "path"
         required: true
         type: "string"
@@ -175,50 +183,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Mutation'
-  /samples/{sampleId}/cnas/{stable_id}:
-    get:
-      summary: searchers cna for specific sample with specific stable_id
-      parameters:
-      - name: "sampleId"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "stable_id"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results mathing criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Cna'
-
-  /samples/{sampleId}/expressions/{stable_id}:
-    get:
-      summary: searchers expression for specific sample with specific stable_id
-      parameters:
-      - name: "sampleId"
-        in: "path"
-        required: true
-        type: "string"
-      - name: "stable_id"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: search results mathing criteria
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Expression'  
+              $ref: '#/definitions/Mutations'
   /studies:
     get:
       summary: list all avaible studies
@@ -231,11 +196,11 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Study'
-  /studies/{name}/samples:
+  /studies/{study_name}/pdxmodels:
     get:
-      summary: list samples for specific studies
+      summary: list pdxmodels for specific studies
       parameters:
-      - name: "name"
+      - name: "study_name"
         in: "path"
         required: true
         type: "string"
@@ -243,9 +208,26 @@ paths:
         - application/json
       responses:
         200:
-          description: search results mathing criteria, returns studies with samples
+          description: search results mathing criteria, returns studies with pdxmodels
           schema:
-              $ref: '#/definitions/StudyWithSamples'
+              $ref: '#/definitions/StudyWithPDXmodels'
+  /studies/{study_name}/cancertypes:
+    get:
+      summary: List available cancer types for specific study
+      parameters:
+      - name: "study_name"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses:
+        200:
+          description: List of available cancer types
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CancerType'
   /cancertypes:
     get:
       summary: List available cancer types
@@ -258,26 +240,26 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CancerType'
-  /cancertypes/{studyName}:
-    get:
-      summary: List available cancer types for specific study
-      parameters:
-      - name: "studyName"
-        in: "path"
-        required: true
-        type: "string"
-      produces:
-        - application/json
-      responses:
-        200:
-          description: List of available cancer types
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/CancerType'
+#  /cancertypes/{study_name}:
+#    get:
+#      summary: List available cancer types for specific study
+#      parameters:
+#      - name: "study_name"
+#        in: "path"
+#        required: true
+#        type: "string"
+#      produces:
+#        - application/json
+#      responses:
+#        200:
+#          description: List of available cancer types
+#          schema:
+#            type: array
+#            items:
+#              $ref: '#/definitions/CancerType'
   /tmplists:
     get:
-      summary: Get all of the temporary stored lists of samples
+      summary: Get all of the temporary stored lists of pdxmodels
       produces:
         - application/json
       responses:
@@ -288,14 +270,14 @@ paths:
             items:
               $ref: '#/definitions/Tmplist'
     post:
-      summary: Upload list of sample ids
+      summary: Upload list of pdxmodel ids
       produces:
         - application/json
       parameters:
-      - name: samples
+      - name: pdxmodels
         in: body
         required: true
-        description: List of sample ids to store.
+        description: List of pdxmodels ids to store.
         schema:
           $ref: '#/definitions/PostTmpList'
       responses:
@@ -304,11 +286,11 @@ paths:
           schema:
             $ref: '#/definitions/TmpListId'
 
-  /tmplists/{listId}:
+  /tmplists/{list_id}:
     get:
-      summary: Store and access temporary created lists of samples
+      summary: Store and access temporary created lists of pdxmodels
       parameters:
-      - name: "listId"
+      - name: "list_id"
         in: "path"
         required: true
         type: "string"
@@ -316,17 +298,17 @@ paths:
         - application/json
       responses:
         200:
-          description: Return list of samples ids.
+          description: Return list of pdxmodel ids.
           schema:
             type: array
             items:
               type: string
               example: CRC0691LM
-  /tmplists/{listId}/samples:
+  /tmplists/{list_id}/pdxmodels:
     get:
-      summary: Return sample records 
+      summary: Return pdxmodels records 
       parameters:
-      - name: "listId"
+      - name: "list_id"
         in: "path"
         required: true
         type: "string"
@@ -338,13 +320,13 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Sample'
+              $ref: '#/definitions/PDXmodel'
 
-  /tmplists/{listId}/cnas:
+  /tmplists/{list_id}/cnas:
     get:
       summary: Return cna records 
       parameters:
-      - name: "listId"
+      - name: "list_id"
         in: "path"
         required: true
         type: "string"
@@ -356,12 +338,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Cna'
-  /tmplists/{listId}/expressions:
+              $ref: '#/definitions/Cnas'
+  /tmplists/{list_id}/expressions:
     get:
       summary: Return cna records 
       parameters:
-      - name: "listId"
+      - name: "list_id"
         in: "path"
         required: true
         type: "string"
@@ -373,12 +355,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Expression'
-  /tmplists/{listId}/mutations:
+              $ref: '#/definitions/Expressions'
+  /tmplists/{list_id}/mutations:
     get:
       summary: Return cna records 
       parameters:
-      - name: "listId"
+      - name: "list_id"
         in: "path"
         required: true
         type: "string"
@@ -390,7 +372,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Mutation'
+              $ref: '#/definitions/Mutations'
 
 definitions:
   Patient:
@@ -406,7 +388,7 @@ definitions:
         example: "colorectal carcinom"
       sex:
         type: string
-        # male,female, not specified
+        enum: ["male","female", "not specified"]
         example: "female"
   PDXmodel:
     type: object
@@ -420,31 +402,34 @@ definitions:
         example: 'UNITO'
       date_of_collection:
         type: string
-        example: 'something here'
+        example: 'Oct 2014'
       age_at_collection:
         type: string
-        example: 'something here'
+        example: '55'
       sample_origin:
         type: string
-        example: 'something here'
+        example: 'Primary'
       site_of_sampled_metastasis:
         type: string
-        example: 'something here'
-      implant_site:
+        example: 'axillary'
+      engrafment_site:
         type: string
-        example: 'something here'
-      implant_type:
+        example: 'interscapular fat pad'
+      engrafment_type:
         type: string
-        example: 'something here'
+        example: 'heterotopic'
+      engrafment_material:
+        type: string
+        example: 'tissue fragment'
+        
       strain:
         type: string
-        example: 'something here'
+        example: 'NMRI nude'
       site_of_primary:
         type: string
-        example: 'something here'
+        example: 'breast'
       cancer_study_identifier:
         type: string
-        example: 'something here'
       MS_status:
         type: string
         example: 'stable'
@@ -453,108 +438,170 @@ definitions:
         type: string
         
         
-  Sample:
-    type: object
-    required:
-    - sample_id
-    - patient_id
-    - institution
-    - date_of_collection
-    - age_at_collection
-    - sample_origin
-    - site_of_sampled_metastasis
-    - implant_site
-    - implant_type
-    - strain
-    - site_of_primary
-    - cancer_study_identifier
-    - MS_status
-    - sample_class
-    properties:
-      sample_id:
-        type: string
-        example: CRC0691LM
-      patient_id:
-        type: string
-        example: 11000206
-      institution:
-        type: string
-        example: 'UNITO'
-      date_of_collection:
-        type: string
-        example: 'something here'
-      age_at_collection:
-        type: string
-        example: 'something here'
-      sample_origin:
-        type: string
-        example: 'something here'
-      site_of_sampled_metastasis:
-        type: string
-        example: 'something here'
-      implant_site:
-        type: string
-        example: 'something here'
-      implant_type:
-        type: string
-        example: 'something here'
-      strain:
-        type: string
-        example: 'something here'
-      site_of_primary:
-        type: string
-        example: 'something here'
-      cancer_study_identifier:
-        type: string
-        example: 'something here'
-      MS_status:
-        type: string
-        example: 'stable'
-        enum: ['stable','instable']
-      sample_class:
-        type: string
+#  Sample:
+#    type: object
+#    required:
+#    - sample_id
+#    - patient_id
+#    - institution
+#    - date_of_collection
+#    - age_at_collection
+#    - sample_origin
+#    - site_of_sampled_metastasis
+#    - implant_site
+#    - implant_type
+#    - strain
+#    - site_of_primary
+#    - cancer_study_identifier
+#    - MS_status
+#    - sample_class
+#    properties:
+#      sample_id:
+#        type: string
+#        example: CRC0691LM
+#      patient_id:
+#        type: string
+#        example: 11000206
+#      institution:
+#        type: string
+#        example: 'UNITO'
+#      date_of_collection:
+#        type: string
+#        example: '1.1.2000'
+#      age_at_collection:
+#        type: string
+#        example: '123'
+#      sample_origin:
+#        type: string
+#        example: 'primary/metastatic'
+#      site_of_sampled_metastasis:
+#        type: string
+#        example: ''
+#      implant_site:
+#        type: string
+#        example: 'interscapular fat pad'
+#      implant_type:
+#        type: string
+#        example: 'something here'
+#      strain:
+#        type: string
+#        example: 'NODSCID / NMRI nude'
+#      site_of_primary:
+#        type: string
+#        example: 'breast/colorectum/....'
+#      site_of_sample:
+#        type: string
+#        example: 'axillary lymph node'
+#      cancer_study_identifier:
+#        type: string
+#        example: 'something here'
+#      MS_status:
+#        type: string
+#        example: 'stable'
+#        enum: ['stable','instable']
+#      sample_class:
+#        type: string
 
 
   Cna:
     type: object
-    required:
-    - sample_id
-    - entrez_gene_id
-    - value
-    - stable_id
     properties:
-      sample_id:
-        type: string
-        example: CRC0691LM
       entrez_gene_id:
         type: integer
         example: 1
       value:
         type: integer
         example: 2
+  Cnas:
+    type: object
+    properties:
+      pdxmodel_id:
+        type: string
+        example: "CRC0691LM"
+      sample_id:
+        type: string
+        example: "CRC0691LMX0A01…"
       stable_id:
         type: string
         example: gistic
+      cnas:
+        type: array
+        items:
+          $ref: '#/definitions/Cna'
   Expression:
     type: object
-    required:
-    - sampleId
-    - hugoSymbol
-    - entrezGeneId
-    - stable_id
     properties:
-      sampleId:
+      hugo_symbol:
         type: string
-        example: CRC0691LM
-      entrezGeneId:
+        example: ABCA12
+      entrez_gene_id:
         type: integer
         example: 100132074
-      hugoSymbol:
+      value:
+        type: integer
+        example: 2
+  Expressions:
+    type: object
+    properties:
+      pdxmodel_id:
         type: string
-        example: A2M
+        example: CRC0691LM
+      sample_id:
+        type: string
+        example: "CRC0691LMX0A01…"
       stable_id:
         type: string
         example: rna_seq_mrna
+      expressions:
+        type: array
+        items:
+          $ref: '#/definitions/Expression'
+  Mutation:
+    type: object
+    properties:
+      entrez_gene_id:
+        type: integer
+        example: 100132074
+      ncbiBuild:
+        type: number
+        example: 37.1
+      chromosome:
+        type: integer
+        example: 12
+      startPosition:
+        type: integer
+        example: 9243799
+      endPosition:
+        type: integer
+        example: 9243799
+      strand:
+        type: integer
+        example: -1
+      variantClassification:
+        type: string
+        example: Missense_Mutation
+      hgvsShort:
+        type: string
+        example: p.R823W
+      proteinPosition:
+        type: integer
+        example: 823
+      swissprot:
+        type: string
+        example: A0A0A0MT16
+  Mutations:
+    type: object
+    properties:
+      pdxmodel_id:
+        type: string
+        example: CRC0691LM
+      sample_id:
+        type: string
+        example: "CRC0691LMX0A01…"
+      mutations:
+        type: array
+        items:
+          $ref: '#/definitions/Mutation'
   MetaFile:
     type: object
     required:
@@ -602,7 +649,7 @@ definitions:
     properties:
       name:
         type: string
-        example: 500 colorectal cancer models (ircc)
+        example: IRCC
       cancer_study_identifier:
         type: string
         example: ircc_crc_feb2018
@@ -615,84 +662,36 @@ definitions:
       short_name:
         type: string
         example: IRCC CRC
-  StudyWithSamples:
+  StudyWithPDXmodels:
     type: object
     required:
     - studies
-    - samples
+    - pdxmodels
     properties:
       studies:
           $ref:  '#/definitions/Study'
-      samples:
+      pdxmodels:
         type: array
         items:
-          $ref: '#/definitions/Sample'
-  
-  Mutation:
-    type: object
-    required:
-    - sampleId
-    - hugoSymbol
-    - entrezGeneId
-    - ncbiBuild
-    - chromosome
-    - startPosition
-    - endPosition
-    - strand
-    - variantClassification
-    - hgvsShort
-    - proteinPosition
-    - swissprot
-    properties:
-      sampleId:
-        type: string
-        example: CRC0691LM
-      entrezGeneId:
-        type: integer
-        example: 100132074
-      hugoSymbol:
-        type: string
-        example: A2M
-      ncbiBuild:
-        type: number
-        example: 37.1
-      chromosome:
-        type: integer
-        example: 12
-      startPosition:
-        type: integer
-        example: 9243799
-      endPosition:
-        type: integer
-        example: 9243799
-      strand:
-        type: integer
-        example: -1
-      variantClassification:
-        type: string
-        example: Missense_Mutation
-      hgvsShort:
-        type: string
-        example: p.R823W
-      proteinPosition:
-        type: integer
-        example: 823
-      swissprot:
-        type: string
-        example: A0A0A0MT16
+          $ref: '#/definitions/PDXmodel'
   CancerType:
     type: object
     properties:
       oncotree_code:
         type: string
+        example: crc
       name:
         type: string
+        example: Colorectal cancer
       description:
         type: string
+        example: colorectal,colon
       dedicated_color:
         type: string
+        example: tomato
       parent_type_of_cancer:
         type: string
+        example: tissue
   TmpListId:
     type: object
     required:
@@ -704,18 +703,18 @@ definitions:
   PostTmpList:
     type: object
     properties:
-      sample_list:
+      pdxmodel_list:
         type: array
         items: 
           type: string
-          example: CRC0691LM
+          example: [CRC0691LM, CRC0666LM]
   Tmplist:
     type: object
     properties:
       tmp_list_id:
         type: integer
         example: 3
-      sample_ids:
+      pdxmodel_ids:
         type: array
         items:
           type: string
