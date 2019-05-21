@@ -271,6 +271,10 @@ paths:
               $ref: '#/definitions/Tmplist'
     post:
       summary: Upload list of pdxmodel ids
+      description: >
+        Simple usage: 
+          curl -X POST -d '{"pdxmodel_list":["value1","value2","value3"]}' -H "Content-Type: application/json" https://hostname/api/v1/tmplists
+        
       produces:
         - application/json
       parameters:
