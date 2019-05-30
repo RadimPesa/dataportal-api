@@ -645,15 +645,11 @@ definitions:
   Study:
     type: object
     required:
-    - name
     - cancer_study_identifier
     - cancer_type_id
     - description
     - short_name
     properties:
-      name:
-        type: string
-        example: IRCC
       cancer_study_identifier:
         type: string
         example: ircc_crc_feb2018
