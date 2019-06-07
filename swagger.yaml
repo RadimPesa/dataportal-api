@@ -369,7 +369,9 @@ definitions:
       model_id:
         type: string
         example: CRC0691LM
-
+      patient_id:
+        type: string
+        example: 'GTR0009'
       institution:
         type: string
         example: 'UNITO'
@@ -394,7 +396,6 @@ definitions:
       engrafment_material:
         type: string
         example: 'tissue fragment'
-        
       strain:
         type: string
         example: 'NMRI nude'
