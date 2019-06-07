@@ -37,20 +37,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/PDXmodel'
-
-#  /samples:
-#    get:
-#      summary: searches samples
-#      produces:
-#        - application/json
-#      responses:
-#        200:
-#          description: search results matching criteria
-#          schema:
-#            type: array
-#            items:
-#              $ref: '#/definitions/PDXmodel'
-
   /cnas:
     get:
       summary: searches cnas
@@ -240,23 +226,6 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CancerType'
-#  /cancertypes/{study_name}:
-#    get:
-#      summary: List available cancer types for specific study
-#      parameters:
-#      - name: "study_name"
-#        in: "path"
-#        required: true
-#        type: "string"
-#      produces:
-#        - application/json
-#      responses:
-#        200:
-#          description: List of available cancer types
-#          schema:
-#            type: array
-#            items:
-#              $ref: '#/definitions/CancerType'
   /tmplists:
     get:
       summary: Get all of the temporary stored lists of pdxmodels
@@ -442,71 +411,6 @@ definitions:
         type: string
         
         
-#  Sample:
-#    type: object
-#    required:
-#    - sample_id
-#    - patient_id
-#    - institution
-#    - date_of_collection
-#    - age_at_collection
-#    - sample_origin
-#    - site_of_sampled_metastasis
-#    - implant_site
-#    - implant_type
-#    - strain
-#    - site_of_primary
-#    - cancer_study_identifier
-#    - MS_status
-#    - sample_class
-#    properties:
-#      sample_id:
-#        type: string
-#        example: CRC0691LM
-#      patient_id:
-#        type: string
-#        example: 11000206
-#      institution:
-#        type: string
-#        example: 'UNITO'
-#      date_of_collection:
-#        type: string
-#        example: '1.1.2000'
-#      age_at_collection:
-#        type: string
-#        example: '123'
-#      sample_origin:
-#        type: string
-#        example: 'primary/metastatic'
-#      site_of_sampled_metastasis:
-#        type: string
-#        example: ''
-#      implant_site:
-#        type: string
-#        example: 'interscapular fat pad'
-#      implant_type:
-#        type: string
-#        example: 'something here'
-#      strain:
-#        type: string
-#        example: 'NODSCID / NMRI nude'
-#      site_of_primary:
-#        type: string
-#        example: 'breast/colorectum/....'
-#      site_of_sample:
-#        type: string
-#        example: 'axillary lymph node'
-#      cancer_study_identifier:
-#        type: string
-#        example: 'something here'
-#      MS_status:
-#        type: string
-#        example: 'stable'
-#        enum: ['stable','instable']
-#      sample_class:
-#        type: string
-
-
   Cna:
     type: object
     properties:
