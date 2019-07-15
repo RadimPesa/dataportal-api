@@ -346,8 +346,52 @@ paths:
             type: array
             items:
               $ref: '#/definitions/Mutations'
-
+  /tmplists/{list_id}/statistics:
+    get:
+      summary: Provide statistical occurancy of avaible data for models in studies
+      parameters:
+      - name: "list_id"
+        in: "path"
+        required: true
+        type: "string"
+      produces:
+        - application/json
+      responses: 
+        200:
+          description: statistic for models in studies
+          schema:
+            $ref: '#/definitions/Statistics'
 definitions:
+  Statistics:
+    type: object
+    properties:
+      study:
+        type: string
+        example: IRCC
+      samples:
+        type: string
+        example: 700
+      expressions:
+        type: array
+        items:
+          $ref: '#/definitions/stats'
+      cnas:
+        type: array
+        items:
+          $ref: '#/definitions/stats'
+      muts:
+        type: array
+        items:
+          $ref: '#/definitions/stats'
+  stats:
+    type: object
+    properties:
+      stable_id:
+        type: string
+        example: gistic
+      count: 
+        type: string
+        example: 10
   Patient:
     type: object
     required:
