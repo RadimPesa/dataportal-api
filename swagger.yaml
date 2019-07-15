@@ -354,6 +354,7 @@ paths:
         in: "path"
         required: true
         type: "string"
+        description: /tmplists/1/statistics
       produces:
         - application/json
       responses: 
