@@ -361,7 +361,9 @@ paths:
         200:
           description: statistic for models in studies
           schema:
-            $ref: '#/definitions/Statistics'
+            type: array
+            items:
+              $ref: '#/definitions/Statistics'
 definitions:
   Statistics:
     type: object
