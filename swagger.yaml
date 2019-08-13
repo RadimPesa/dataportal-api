@@ -214,6 +214,59 @@ paths:
             type: array
             items:
               $ref: '#/definitions/CancerType'
+  /studies/{study_name}/cnas/{stable_id}:
+    get:
+      summary: List of avaible cnas for specific study, by specific stableID. Gisitic is set as default
+      parameters:
+        - name: "study_name"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "stable_id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: List of available cnas
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Cnas'
+  /studies/{study_name}/expressions/{stable_id}:
+    get:
+      summary: List of avaible expressions for specific study, by specific stableID. rna_seq_mrna is set as default
+      parameters:
+        - name: "study_name"
+          in: "path"
+          required: true
+          type: "string"
+        - name: "stable_id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: List of available expressions
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Expressions' 
+  /studies/{study_name}/mutations:
+    get:
+      summary: List of avaible mutations for specific study.
+      parameters:
+        - name: "study_name"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: List of available Mutations
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Mutations'
   /cancertypes:
     get:
       summary: List available cancer types
